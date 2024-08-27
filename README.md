@@ -1,35 +1,11 @@
-# CAR-RENTAL-RESERVATION-SYSTEM
-
-This application is designed to streamline the process of renting cars online. 
-
-## Live URL
-You can access the live application here: [eRental-car](https://eRental-car.vercel.app)
-
-## GitHub Repository
-The source code is available on GitHub: [car-rental-reservation-system](https://github.com/Taher-39/car-rental-reservation-system)
-
-## Description
-eRental-car is a car rental reservation system built with TypeScript, Express.js, and MongoDB using Mongoose. It provides users with the ability to sign up, sign in, and book cars for rental, ensuring that bookings cannot be made for past dates and times.
-
-## Features
-- User and admin authentication (Sign up and Sign in)
-- Authorization using JWT (json-web-token)
-- Car rental booking system
-- Prevents bookings for past dates and times
-- Booking car from user end only
-
-## Technology Used
-- **Backend:** Node.js, Express.js, TypeScript, JWT, bcrypt etc.
-- **Database:** MongoDB (Mongoose)
-- **Validation:** Zod
-- **Hosting:** Vercel
+## This is Starter project 
 
 ## Installation
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/Taher-39/car-rental-reservation-system.git
-cd car-rental-reservation-system
+git clone `repo link`
+cd download forder
 ```
 
 ### Step 2: Install Dependencies
@@ -43,10 +19,6 @@ Create a `.env` file in the root directory and add your environment variables. F
 NODE_ENV=development
 PORT=5000
 DB_URL='your mongodb url'
-BCRYPT_SALT_ROUNDS='your-salt-rounds'
-DEFAULT_PASS='your default pass'
-JWT_ACCESS_SECRET='your-jwt-key'
-JWT_ACCESS_EXPIRES_IN='your-access-expires'
 ```
 
 ### Step 4: Build TypeScript
@@ -105,3 +77,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 
 Feel free to customize and add more information specific to your project as needed.
+
+
+
+
+
+
+

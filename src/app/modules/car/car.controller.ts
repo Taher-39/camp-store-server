@@ -5,7 +5,6 @@ import {
   createCar,
   getAllCars,
   getCarById,
-  returnCarService,
   softDeleteCar,
   updateCar,
 } from './car.service';
@@ -96,20 +95,4 @@ export const deleteCarController = catchAsync(async (req, res) => {
   });
 });
 
-export const returnCarController = catchAsync(async (req, res) => {
-  const result = await returnCarService(req.body);
-  if (!result) {
-    return res.status(httpStatus.NOT_FOUND).json({
-      success: false,
-      statusCode: 404,
-      message: 'No Data Found',
-      data: [],
-    });
-  }
-  sendResponse(res, {
-    success: true,
-    statusCode: httpStatus.OK,
-    message: 'Car returned successfully',
-    data: result,
-  });
-});
+
