@@ -2,25 +2,36 @@ import httpStatus from 'http-status';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import {
-  createCar,
-  getAllCars,
-  getCarById,
-  softDeleteCar,
-  updateCar,
-} from './car.service';
+  createProduct,
+  getAllProducts,
+  getProductById,
+  softDeleteProduct,
+  updateProduct,
+} from './product.service';
 
-export const createCarController = catchAsync(async (req, res) => {
-  const result = await createCar(req.body);
+export const createProductController = catchAsync(async (req, res) => {
+  // console.log('productCreate', req.files)
+  // const images = req.files
+
+  // const productData = {
+  //   ...req.body,
+  //   images,
+  // };
+
+  const result = await createProduct(req.body);
+
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.CREATED,
-    message: 'Car created successfully',
+    message: 'Product created successfully',
     data: result,
   });
 });
 
-export const getAllCarsController = catchAsync(async (req, res) => {
-  const result = await getAllCars();
+
+
+export const getAllProductsController = catchAsync(async (req, res) => {
+  const result = await getAllProducts();
   if (!result) {
     return res.status(httpStatus.NOT_FOUND).json({
       success: false,
@@ -32,14 +43,14 @@ export const getAllCarsController = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Cars retrieved successfully',
+    message: 'Products retrieved successfully',
     data: result,
   });
 });
 
-export const getSingleCarController = catchAsync(async (req, res) => {
+export const getSingleProductController = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await getCarById(id);
+  const result = await getProductById(id);
 
   if (!result) {
     return res.status(httpStatus.NOT_FOUND).json({
@@ -52,14 +63,14 @@ export const getSingleCarController = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'A Car retrieved successfully',
+    message: 'A Product retrieved successfully',
     data: result,
   });
 });
 
-export const updateCarController = catchAsync(async (req, res) => {
+export const updateProductController = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await updateCar(id, req.body);
+  const result = await updateProduct(id, req.body);
   if (!result) {
     return res.status(httpStatus.NOT_FOUND).json({
       success: false,
@@ -71,14 +82,14 @@ export const updateCarController = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Car updated successfully',
+    message: 'Product updated successfully',
     data: result,
   });
 });
 
-export const deleteCarController = catchAsync(async (req, res) => {
+export const deleteProductController = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await softDeleteCar(id);
+  const result = await softDeleteProduct(id);
   if (!result) {
     return res.status(httpStatus.NOT_FOUND).json({
       success: false,
@@ -90,7 +101,7 @@ export const deleteCarController = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Car deleted successfully',
+    message: 'Product deleted successfully',
     data: result,
   });
 });
