@@ -11,7 +11,6 @@ import {
   getSingleProductController,
   updateProductController,
 } from './product.controller';
-// import { uploadMultipleImages } from '../../middlewares/multerConfig';
 
 const router = Router();
 
@@ -19,7 +18,6 @@ const router = Router();
 router.post(
   '/',
   validateRequest(ProductValidationSchema),
-  // uploadMultipleImages,
   createProductController,
 );
 router.get('/', getAllProductsController);

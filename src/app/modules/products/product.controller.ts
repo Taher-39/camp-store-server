@@ -10,16 +10,7 @@ import {
 } from './product.service';
 
 export const createProductController = catchAsync(async (req, res) => {
-  // console.log('productCreate', req.files)
-  // const images = req.files
-
-  // const productData = {
-  //   ...req.body,
-  //   images,
-  // };
-
   const result = await createProduct(req.body);
-
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.CREATED,

@@ -29,7 +29,9 @@ export const updateProduct = async (
   return result;
 };
 
-export const softDeleteProduct = async (id: string): Promise<TProduct | null> => {
+export const softDeleteProduct = async (
+  id: string,
+): Promise<TProduct | null> => {
   const result = await Product.findByIdAndUpdate(
     id,
     { isDeleted: true },
@@ -37,5 +39,3 @@ export const softDeleteProduct = async (id: string): Promise<TProduct | null> =>
   );
   return result;
 };
-
-
