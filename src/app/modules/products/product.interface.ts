@@ -6,4 +6,5 @@ export type TProduct = {
   price: number;
   isDeleted: boolean;
   quantity: number;
+  sellCount: number;
 };

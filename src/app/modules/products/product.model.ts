@@ -10,6 +10,7 @@ const productSchema = new Schema<TProduct>(
     status: { type: String, required: true },
     price: { type: Number, required: true },
     isDeleted: { type: Boolean, default: false },
+    sellCount: { type: Number, default: 0 },
   },
   {
     timestamps: true,
