@@ -7,4 +7,5 @@ export type TProduct = {
   isDeleted: boolean;
   quantity: number;
   sellCount: number;
+  image?: string;
 };
