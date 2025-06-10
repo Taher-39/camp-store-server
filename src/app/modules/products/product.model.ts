@@ -7,6 +7,7 @@ const productSchema = new Schema<TProduct>(
     description: { type: String, required: true },
     category: { type: String, required: true },
     quantity: { type: Number, required: true },
+    weight: { type: Number, required: true },
     status: { type: String, required: true },
     price: { type: Number, required: true },
     isDeleted: { type: Boolean, default: false },
