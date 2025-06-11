@@ -18,14 +18,14 @@ const router = express.Router();
 
 router.post(
   '/',
-  auth(USER_ROLE.CUSTOMER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), // Only logged-in users or admins can create orders
+  auth(USER_ROLE.CUSTOMER, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), 
   validateRequest(createOrderValidationSchema),
   createOrderCntrl
 );
 
 router.get('/', getAllOrdersCntrl);
 router.get('/:id', getOrderCntrl);
-router.patch('/:id', auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), validateRequest(orderUpdateValidationSchema), updateOrderCntrl); // Only admins can update
-router.delete('/:id', auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), deleteOrderCntrl); // Only admins can delete
+router.patch('/:id', auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), validateRequest(orderUpdateValidationSchema), updateOrderCntrl); 
+router.delete('/:id', auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN), deleteOrderCntrl); 
 
 export const OrderRoute = router;

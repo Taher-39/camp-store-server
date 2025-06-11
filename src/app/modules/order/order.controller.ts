@@ -17,9 +17,7 @@ export const createOrderCntrl = catchAsync(async (req, res) => {
   if (userId) {
     orderData.userId = userId;
   }
-
-  console.log(req.body);
-
+  
   const result = await createOrderService(orderData);
   sendResponse(res, {
     success: true,

@@ -1,9 +1,11 @@
 import { Document, Model, Types } from 'mongoose';
 
 export interface IOrderItem {
-  productId: Types.ObjectId;
+  name: string;
+  image: string;
   quantity: number;
-  price: number; // Price per item
+  price: number; 
+  productId: Types.ObjectId;
 }
 
 export interface IOrder extends Document {
