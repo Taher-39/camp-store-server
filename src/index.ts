@@ -11,7 +11,10 @@ app.use(express.json());
 app.use(cookieParser());
 // Configure CORS options
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow specific origin
+   origin: [
+    "http://localhost:5173",
+    "https://camp-store.vercel.app/" // Add your production frontend URL
+  ],
   credentials: true, // Allow cookies or credentials
 };
 
