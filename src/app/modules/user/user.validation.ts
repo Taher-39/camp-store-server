@@ -52,3 +52,19 @@ export const userChangePasswordValidationSchema = z.object({
       .min(4, 'New password must be at least 4 characters long'),
   }),
 });
+
+export const contactValidationSchema = z.object({
+  body: z.object({
+    name: z.string({
+      required_error: 'নাম অবশ্যই দিতে হবে।',
+    }).min(1, 'নাম খালি রাখা যাবে না।'),
+
+    email: z.string({
+      required_error: 'ইমেইল দিতে হবে।',
+    }).email('বৈধ ইমেইল দিন।'),
+
+    message: z.string({
+      required_error: 'বার্তা লিখতে হবে।',
+    }).min(5, 'বার্তা কমপক্ষে ৫ অক্ষরের হতে হবে।'),
+  }),
+});

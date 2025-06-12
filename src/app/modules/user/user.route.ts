@@ -1,6 +1,7 @@
 import express from 'express';
 import validateRequest from '../../middlewares/validateRequest';
 import {
+  contactValidationSchema,
   userUpdateRoleOrStatusValidationSchema,
   userUpdateValidationSchema,
 } from './user.validation';
@@ -11,6 +12,7 @@ import {
   updateOwnProfileCntrl,
   updateUserStatusCntrl,
   updateUserRoleCntrl,
+  submitContactCntrl,
 } from './user.controller';
 import { USER_ROLE } from './user.constant';
 import auth from '../../middlewares/auth';
@@ -50,6 +52,12 @@ router.delete(
   '/:id',
   auth(USER_ROLE.SUPER_ADMIN, USER_ROLE.ADMIN),
   deleteUserCntrl,
+);
+
+router.post(
+  '/contact',
+  validateRequest(contactValidationSchema),
+  submitContactCntrl,
 );
 
 export const UserRoute = router;

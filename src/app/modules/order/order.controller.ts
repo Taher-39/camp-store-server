@@ -6,8 +6,10 @@ import {
   getOrderService,
   updateOrderService,
   deleteOrderService,
+  getOrdersByUserIdService,
 } from './order.service';
 import sendResponse from '../../utils/sendResponse';
+import { Request } from 'express';
 
 export const createOrderCntrl = catchAsync(async (req, res) => {
   const { userId } = req.user || {}; // Get userId from request (if logged in)
@@ -26,6 +28,20 @@ export const createOrderCntrl = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
+export const getOrdersByUserIdCntrl = catchAsync(async (req, res) => {
+  // const userId = req.params.userId;
+  const userId = req.user._id;
+  const orders = await getOrdersByUserIdService(userId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Orders retrieved successfully!',
+    data: orders,
+  });
+});
+
 
 export const getAllOrdersCntrl = catchAsync(async (req, res) => {
   const result = await getAllOrdersService();
