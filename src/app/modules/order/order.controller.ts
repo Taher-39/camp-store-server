@@ -9,7 +9,6 @@ import {
   getOrdersByUserIdService,
 } from './order.service';
 import sendResponse from '../../utils/sendResponse';
-import { Request } from 'express';
 
 export const createOrderCntrl = catchAsync(async (req, res) => {
   const { userId } = req.user || {}; // Get userId from request (if logged in)

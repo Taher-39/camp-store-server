@@ -13,7 +13,7 @@ app.use(cookieParser());
 const corsOptions = {
    origin: [
     "http://localhost:5173",
-    "https://camp-store.vercel.app/" // Add your production frontend URL
+    "https://camp-store.vercel.app/"
   ],
   credentials: true, // Allow cookies or credentials
 };
