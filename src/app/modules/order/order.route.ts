@@ -34,8 +34,8 @@ router.get(
   getOrdersByUserIdCntrl
 );
 
-router.get('/', getAllOrdersCntrl);
-router.get('/:id', getOrderCntrl);
+router.get('/', auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN, USER_ROLE.MODARETOR), getAllOrdersCntrl);
+router.get('/:id', auth(USER_ROLE.SUPER_ADMIN, USER_ROLE.ADMIN, USER_ROLE.CUSTOMER, USER_ROLE.MODARETOR), getOrderCntrl);
 router.patch('/:id', auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN, USER_ROLE.MODARETOR), validateRequest(orderUpdateValidationSchema), updateOrderCntrl); 
 router.delete('/:id', auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN, USER_ROLE.MODARETOR), deleteOrderCntrl); 
 
