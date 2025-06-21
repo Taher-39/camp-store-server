@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://camp-store.vercel.app"
+  "https://halzo.vercel.app"
 ];
 
 const corsOptions = {
