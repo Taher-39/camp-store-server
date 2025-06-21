@@ -10,13 +10,30 @@ const app: Application = express();
 app.use(express.json());
 app.use(cookieParser());
 // Configure CORS options
+// const corsOptions = {
+//    origin: [
+//     "http://localhost:5173",
+//     "https://camp-store.vercel.app/"
+//   ],
+//   credentials: true, // Allow cookies or credentials
+// };
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://camp-store.vercel.app"
+];
+
 const corsOptions = {
-   origin: [
-    "http://localhost:5173",
-    "https://camp-store.vercel.app/"
-  ],
-  credentials: true, // Allow cookies or credentials
+  origin: function (origin: any, callback: any) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
 };
+
 
 // Use CORS middleware
 app.use(cors(corsOptions));
