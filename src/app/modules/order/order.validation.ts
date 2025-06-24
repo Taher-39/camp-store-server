@@ -22,7 +22,8 @@ const shippingAddressSchema = z.object({
 // ✅ Final Order Validation Schema
 export const createOrderValidationSchema = z.object({
   body: z.object({
-    userId: z.string().optional(),
+    // userId: z.string(),
+    email: z.string().optional(),
     orderItems: z.array(orderItemSchema),
     name: z.string(),
     shippingAddress: shippingAddressSchema,

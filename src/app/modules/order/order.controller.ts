@@ -6,20 +6,16 @@ import {
   getOrderService,
   updateOrderService,
   deleteOrderService,
-  getOrdersByUserIdService,
+  getOrdersByEmailService,
 } from './order.service';
 import sendResponse from '../../utils/sendResponse';
+import AppError from '../../errors/AppError';
 
 export const createOrderCntrl = catchAsync(async (req, res) => {
-  const { userId } = req.user || {}; // Get userId from request (if logged in)
-  const orderData = { ...req.body };
+  let updateOrderInfo = { ...req.body };
+  updateOrderInfo.email = req.user.email;
 
-  // If a user is logged in, attach the userId to the order data
-  if (userId) {
-    orderData.userId = userId;
-  }
-  
-  const result = await createOrderService(orderData);
+  const result = await createOrderService(updateOrderInfo);
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.CREATED,
@@ -29,18 +25,21 @@ export const createOrderCntrl = catchAsync(async (req, res) => {
 });
 
 export const getOrdersByUserIdCntrl = catchAsync(async (req, res) => {
-  // const userId = req.params.userId;
-  const userId = req.user._id;
-  const orders = await getOrdersByUserIdService(userId);
-
+  if (!req.user) {
+    throw new AppError(httpStatus.UNAUTHORIZED, 'User not authenticated');
+  }
+  const email = req.user.email;
+  const orders = await getOrdersByEmailService(email);
+  const sortedOrders = [...orders].sort(
+    (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
+  );
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
     message: 'Orders retrieved successfully!',
-    data: orders,
+    data: sortedOrders,
   });
 });
-
 
 export const getAllOrdersCntrl = catchAsync(async (req, res) => {
   const result = await getAllOrdersService();

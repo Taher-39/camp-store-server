@@ -7,8 +7,10 @@ export const createOrderService = async (payload: IOrder): Promise<IOrder> => {
   return await Order.create(payload);
 };
 
-export const getOrdersByUserIdService = async (userId: string): Promise<IOrder[]> => {
-  const orders = await Order.find({ userId: userId })
+export const getOrdersByEmailService = async (email: string): Promise<IOrder[]> => {
+  console.log(email);
+  const orders = await Order.find({email: { $regex: `^${email}$`, $options: 'i' }}).populate('email')
+  .populate('orderItems.productId');
   if (!orders || orders.length === 0) {
     throw new AppError(httpStatus.NOT_FOUND, 'No orders found for this user');
   }
@@ -18,18 +20,18 @@ export const getOrdersByUserIdService = async (userId: string): Promise<IOrder[]
 
 
 export const getAllOrdersService = async (): Promise<IOrder[]> => {
-  return await Order.find().populate('userId').populate('orderItems.productId'); // Populate user and product details
+  return await Order.find().populate('email').populate('orderItems.productId'); // Populate user and product details
 };
 
 export const getOrderService = async (id: string): Promise<IOrder | null> => {
-  return await Order.findById(id).populate('userId').populate('orderItems.productId');
+  return await Order.findById(id).populate('email').populate('orderItems.productId');
 };
 
 export const updateOrderService = async (
   id: string,
   payload: Partial<IOrder>
 ): Promise<IOrder | null> => {
-  return await Order.findByIdAndUpdate(id, payload, { new: true }).populate('userId').populate('orderItems.productId');
+  return await Order.findByIdAndUpdate(id, payload, { new: true }).populate('email').populate('orderItems.productId');
 };
 
 export const deleteOrderService = async (id: string): Promise<void> => {

@@ -9,7 +9,7 @@ export interface IOrderItem {
 }
 
 export interface IOrder extends Document {
-  userId?: Types.ObjectId; // Optional: User associated with the order (if logged in)
+  email?: string; // Optional: User associated with the order (if logged in)
   orderItems: IOrderItem[];
   name: string;
   shippingAddress: {

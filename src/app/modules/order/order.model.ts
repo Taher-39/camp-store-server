@@ -4,9 +4,8 @@ import { ORDER_STATUS, Payment_Type } from "../user/user.constant";
 
 const OrderSchema = new Schema<IOrder>(
   {
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
+    email: {
+      type: String,
       required: false,
     },
     orderItems: [
