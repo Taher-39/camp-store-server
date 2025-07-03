@@ -8,5 +8,5 @@ export type TProduct = {
   quantity: number;
   weight: number; 
   sellCount: number;
-  image?: string;
+  images: string[];
 };

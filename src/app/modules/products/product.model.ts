@@ -12,7 +12,14 @@ const productSchema = new Schema<TProduct>(
     price: { type: Number, required: true },
     isDeleted: { type: Boolean, default: false },
     sellCount: { type: Number, default: 0 },
-    image: { type: String }
+    images: {
+      type: [String],
+      required: [true, 'At least one image is required'],
+      validate: {
+        validator: (value: string[]) => value.length > 0,
+        message: 'At least one image is required',
+      },
+    },
   },
   {
     timestamps: true,
